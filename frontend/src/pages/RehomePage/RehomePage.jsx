@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "lottie-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import petlove from "../../assets/petlove.json";
 import "./RehomePage.css";
 
@@ -32,7 +32,7 @@ const RehomePage = () => {
             Your pet deserves a safe and loving home. We’re here to make the
             process easy, transparent, and stress-free for you.
           </h3>
-          <button onClick={handleRehomeClick} style={{
+          <Link to="/choose-to-rehome"><button onClick={handleRehomeClick} style={{
                 padding: '10px 20px',
                 fontSize: '1rem',
                 backgroundColor: '#27496d',
@@ -41,7 +41,7 @@ const RehomePage = () => {
                 borderRadius: '5px',
                 cursor: 'pointer',
                 marginTop: '20px',
-            }}>Start Rehoming</button>
+            }}>Start Rehoming</button></Link>
         </div>
         <div className="hero-image">
           <Lottie
@@ -134,7 +134,7 @@ const RehomePage = () => {
                 fontFamily: "'Montserrat', sans-serif",
                 margin: "30px 0",
             }}>Click the button below to get started with the rehoming process.</p>
-        <button className="cta-button" onClick={handleRehomeClick}>Rehome My Pet</button>
+        <Link to="/choose-to-rehome"><button className="cta-button" onClick={handleRehomeClick}>Rehome My Pet</button></Link>
       </section>
     </div>
   );

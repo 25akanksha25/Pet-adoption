@@ -8,6 +8,8 @@ import {
 } from "../../services/rehoming.service";
 import "./ChooseToRehome.css";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { FaArrowUp } from "react-icons/fa";
 
 export const paymentLink = async () => {
   try {
@@ -24,7 +26,7 @@ const ChooseToRehome = () => {
   const [termsAgreed, setTermsAgreed] = useState(false);
   const [error, setError] = useState("");
   const userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
-
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const [paymentLinkUrl, setPaymentLinkUrl] = useState("");
 
   const petId = localStorage.getItem("petId");
@@ -65,6 +67,24 @@ const ChooseToRehome = () => {
     fetchPaymentLink();
   }, []);
 
+  useEffect(() => {
+    // Show scroll button when user scrolls down
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleInputChange = (field, value, category = null) => {
     setPetData((prev) => {
       if (category) {
@@ -92,9 +112,58 @@ const ChooseToRehome = () => {
   };
 
   const handleNext = async () => {
-    if (currentStep === 1 && !termsAgreed) {
-      setError("Please agree to the terms and conditions");
+    if (!userInfo || !userInfo.token) {
+      toast.error("You need to be logged in to rehome a pet", { position: "top-right" });
+      navigate("/"); // Redirect to login page
       return;
+    }
+
+    if (currentStep === 1 && !termsAgreed) {
+      // setError("Please agree to the terms and conditions");
+      toast.error("Please agree to the terms and conditions");
+      return;
+    }
+
+    if (currentStep === 2) {
+      if (!petData.type || !petData.spayed || !petData.rehomingReason || !petData.timeAvailable) {
+        toast.error("Please enter the reqd. data.");
+        return;
+      }
+    }
+
+    if (currentStep === 4) {
+      if (!petData.name || !petData.age || !petData.size || !petData.gender || !petData.breed) {
+        toast.error("Please enter the reqd. data.");
+        return;
+      }
+    }
+
+    if (currentStep === 5) {
+      if (!petData.keyFacts?.microchipped || !petData.keyFacts?.houseTrained || !petData.keyFacts?.vaccinated) {
+        toast.error("Please enter the reqd. data.");
+        return;
+      }
+    }
+
+    if (currentStep === 6) {
+      if (!petData.location?.postcode || !petData.location?.addressLine1 || !petData.location?.city) {
+        toast.error("Please enter the reqd. data.");
+        return;
+      }
+    }
+  
+    if (currentStep === 7) {
+      if (!petData.personality || !petData.dailyRoutine) {
+        toast.error("Please enter the reqd. data.");
+        return;
+      }
+    }
+  
+    if (currentStep === 8) {
+      if (!petData.documents || petData.documents.length === 0) {
+        toast.error("Please upload at least one document.");
+        return;
+      }
     }
 
     try {
@@ -134,6 +203,7 @@ const ChooseToRehome = () => {
         await finalizeRehoming(petData);
         localStorage.removeItem("rehomerId");
         localStorage.removeItem("petId");
+        toast.success("Pet data sent to Admin");
         window.location.href = paymentLinkUrl;
         return;
       }
@@ -141,6 +211,7 @@ const ChooseToRehome = () => {
       if (currentStep < 9) {
         setCurrentStep(currentStep + 1);
       }
+      scrollToTop();
     } catch (err) {
       setError(
         err.response?.data?.message || "An error occurred. Please try again."
@@ -151,6 +222,7 @@ const ChooseToRehome = () => {
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      scrollToTop();
     }
   };
 
@@ -626,25 +698,44 @@ const ChooseToRehome = () => {
           <div className="step-content">
             <h2>Upload Documents</h2>
             <p className="description">
-              Upload any relevant documents for your pet (vaccination records,
-              medical history, etc.). Accepted formats are (.pdf, .jpg, .png).
-              Max size is 5MB per file.
+              Upload any relevant documents for your pet (vaccination records, medical history, etc.).
+              Accepted formats: <strong>.pdf, .jpg, .png</strong>. Max size: <strong>5MB per file</strong>.
             </p>
+      
             <div className="document-grid">
-              {[1, 2, 3, 4].map((num) => (
-                <div className="document-box" key={num}>
-                  <span>{num}. Document</span>
+              {petData.documents.map((file, index) => (
+                <div className="document-box" key={index}>
+                  <span>{index + 1}. Document</span>
                   <div className="upload-area">
-                    <input
-                      type="file"
-                      accept=".pdf,.jpg,.jpeg,.png"
-                      onChange={(e) => handleFileChange(e, "documents")}
-                      required
-                    />
-                    <p>Click to upload or drag and drop</p>
+                    {file.type === "application/pdf" ? (
+                      <embed
+                        src={URL.createObjectURL(file)}
+                        type="application/pdf"
+                        width="100%"
+                        height="180px"
+                      />
+                    ) : (
+                      <img
+                        src={URL.createObjectURL(file)}
+                        alt={`Uploaded Document ${index + 1}`}
+                        className="uploaded-preview"
+                        width="100%"
+                        height="180px"
+                      />
+                    )}
                   </div>
                 </div>
               ))}
+            </div>
+      
+            <div className="file-upload">
+              <input
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+                onChange={(e) => handleFileChange(e, "documents")}
+                required
+              />
+              {/* <p>Click to upload or drag and drop</p> */}
             </div>
           </div>
         );
@@ -706,6 +797,13 @@ const ChooseToRehome = () => {
         </p>
         <div className="form-fields">{renderStepContent()}</div>
       </div>
+
+      {showScrollButton && (
+        <button className="scroll-to-top" onClick={scrollToTop}>
+          <FaArrowUp />
+        </button>
+      )}
+
 
       <div className="navigation-buttons ">
         <button

@@ -34,7 +34,7 @@ const ChooseToAdopt = () => {
     const fetchPaymentLink = async () => {
       const response = await paymentLink();
       setPaymentLinkUrl(response);
-      console.log("Aditya's data ", response);
+      // console.log("Aditya's data ", response);
     };
     fetchPaymentLink();
   }, []);

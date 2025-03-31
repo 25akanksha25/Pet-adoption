@@ -51,7 +51,7 @@ const Footer = () => {
             <motion.li whileHover={{ x: 5 }}><Link to="/adopt">Adopt a Pet</Link></motion.li>
             <motion.li whileHover={{ x: 5 }}><Link to="/rehome">Rehome a Pet</Link></motion.li>
             <motion.li whileHover={{ x: 5 }}><Link to="/care-guide">Pet Care Guide</Link></motion.li>
-            <motion.li whileHover={{ x: 5 }}><Link to="/about-us">About Us</Link></motion.li>
+            <motion.li whileHover={{ x: 5 }}><Link to="/about">About Us</Link></motion.li>
           </ul>
         </div>
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../services/authService';
 import { FaUser, FaSignOutAlt, FaChevronDown } from 'react-icons/fa';
 import { getProfile } from '../../services/profileService';
+import { toast } from "react-toastify";
 
 const UserMenu = ({ user, setUser }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +42,7 @@ const UserMenu = ({ user, setUser }) => {
   const handleLogout = () => {
     logout();
     setUser(null);
+    toast.success("Logged out!", { position: "top-right" });
     navigate('/');
   };
 

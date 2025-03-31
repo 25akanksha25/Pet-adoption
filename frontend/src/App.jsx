@@ -22,6 +22,7 @@ import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import Pets from "./pages/AdminPanel/Pets";
 import Users from "./pages/AdminPanel/Users";
 import PetStore from "./pages/PetStore/PetStore";
+import ScrollToTop from "./components/Scroll/ScrollToTop";
 
 const App = () => {
   const [loginPopup, setLoginPopup] = useState(false);
@@ -51,6 +52,7 @@ const App = () => {
       <ToastContainer position="top-right" autoClose={3000} />
       <Navbar handleLoginPopup={toggleLoginPopup} user={user} setUser={setUser} />
       <LoginPopup loginPopup={loginPopup} handleLoginPopup={toggleLoginPopup} onLoginSuccess={handleLoginSuccess} />
+      <ScrollToTop />
 
       <div className={loginPopup ? "blur-sm bg-black/30" : ""}>
         <main>
