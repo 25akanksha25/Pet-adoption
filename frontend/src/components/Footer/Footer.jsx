@@ -29,7 +29,7 @@ const Footer = () => {
         {/* Brand Section */}
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
-            <img src="./assets/paws4home_logo.png" alt="Paws4Home Logo" className="footer-logo-image" />
+            {/* <img src="./assets/paws4home_logo.png" alt="Paws4Home Logo" className="footer-logo-image" /> */}
             <span>Paws4Home</span>
           </Link>
           <p className="footer-description">
