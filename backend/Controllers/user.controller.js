@@ -39,7 +39,7 @@
 
       const userExists = await User.findOne({ email });
       if (userExists) {
-        res.status(400);
+        // res.status(400);
         throw new Error("User already exists");
       }
 
@@ -57,7 +57,8 @@
         country,
         state,
         zipCode,
-        profilePicture
+        profilePicture,
+        role: "user",
       });
 
       console.log('Created user with profile picture:', user.profilePicture);
@@ -67,8 +68,9 @@
           _id: user.id,
           name: user.name,
           email: user.email,
+          role: user.role,
           profilePicture: getProfilePictureUrl(req, user.profilePicture),
-          token: generateToken(user.id),
+          token: generateToken(user.id,user.role),
         });
       } else {
         res.status(400);
@@ -98,6 +100,7 @@
           _id: user.id,
           name: user.name,
           email: user.email,
+          role: user.role,
           profilePicture: profilePictureUrl,
           token: generateToken(user.id),
         });

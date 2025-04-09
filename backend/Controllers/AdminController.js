@@ -6,12 +6,12 @@ export const users = async (req,res,next) => {
     try {
         console.log("Hi");
         const users = await User.find();
-        const fetchUser = users.filter(({email}) => email != "admin@gmail.com" )
+        const fetchUser = users.filter(({email}) => email != "akritigarg1107@gmail.com" )
         console.log(fetchUser);
         
         return res.json(fetchUser);
     } catch (error) {
-        console.error('Error fetching users data:', err);
+        console.error('Error fetching users data:', error);
         res.status(400).json({message : "error in fectching users"});
     }
 }
@@ -22,7 +22,7 @@ export const deleteUser = async (req,res) => {
         await User.findByIdAndDelete(id).exec();
        return res.json({message : "user deleted succesfully"});
     } catch (error) {
-        console.error('Error fetching users data:', err);
+        console.error('Error fetching users data:', error);
         res.status(400).json({message : "error in deleting user"});  
     }
 }
@@ -32,7 +32,7 @@ export const pets = async (req,res) => {
         const pets = await Pet.find();
         return res.json(pets);
     } catch (error) {
-        console.error('Error fetching users data:', err);
+        console.error('Error fetching users data:', error);
         res.status(400).json({message : "error in fectching pets"});
         
     }
@@ -43,10 +43,14 @@ export const deletePets = async (req,res) => {
         const pets = await Pet.findByIdAndDelete(id).exec();
         return res.json(pets);
     } catch (error) {
-        console.error('Error fetching users data:', err);
+        console.error('Error fetching users data:', error);
         res.status(400).json({message : "error in fectching pets"});
         
     }
 }
+
+
+
+
 
 

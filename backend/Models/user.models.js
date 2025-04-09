@@ -76,6 +76,11 @@ const userSchema = mongoose.Schema(
     googleId: {
       type: String,
       sparse: true,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"], 
+      default: "user",
     }
   },
   {

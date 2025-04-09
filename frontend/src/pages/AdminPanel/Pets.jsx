@@ -9,7 +9,7 @@ const Pets = () => {
   // Fetch Pets Data
   const fetchPetsData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/admin/allPets");
+      const response = await axios.get("http://localhost:8080/api/Admin/allPets");
       const allPetsData = response.data;
       const pendingPetsData = allPetsData.filter((pet) => !pet.approvedStatus);
       const truepets = allPetsData.filter((pet) => pet.approvedStatus);
@@ -25,7 +25,7 @@ const Pets = () => {
     try {
       await axios.post("http://localhost:8080/api/change-pet-status", { id, status: true });
       fetchPetsData();
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error approving pet:", error.response?.data?.msg || error.message);
     }
@@ -34,9 +34,9 @@ const Pets = () => {
   // Delete Pet
   const handleDeletePet = async (id) => {
     try {
-        await axios.post("http://localhost:8080/api/change-pet-status", { id, status: false });
+        await axios.post("http://localhost:8080/api/Admin/deletePets/${id}", { id, status: false });
         fetchPetsData();
-        window.location.reload();
+        // window.location.reload();
       } catch (error) {
         console.error("Error approving pet:", error.response?.data?.msg || error.message);
       }

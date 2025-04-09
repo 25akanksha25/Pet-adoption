@@ -8,6 +8,7 @@ const Users = () => {
   const fetchUsersData = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/Admin/allUsers");
+      console.log("Users data:", response.data);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -18,8 +19,9 @@ const Users = () => {
   const handleDeleteUser = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/Admin/deleteUser/${id}`);
-      window.location.reload();
-      fetchUsersData(); // Refresh the user data after deletion
+      // window.location.reload();
+      // fetchUsersData(); 
+      setUsers(prevUsers => prevUsers.filter(user => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error.response?.data?.msg || error.message);
     }
