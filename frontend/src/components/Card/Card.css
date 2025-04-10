@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .card {
   background: #fff;
@@ -87,7 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-bottom: 30px; /* Space for fixed button */
+  padding-bottom: 30px; 
 }
 
 .detail-item {
@@ -147,7 +147,7 @@
   background-color: #5a52cc;
 }
 
-/* Loading state styles */
+
 .card.loading {
   pointer-events: none;
   opacity: 0.7;
@@ -168,7 +168,226 @@
   }
 }
 
-/* Responsive adjustments */
+
+@media (max-width: 640px) {
+  .card {
+    width: 280px !important;
+    min-width: 280px;
+    max-width: 280px;
+    margin: 15px;
+  }
+
+  .card-image-container {
+    width: 180px;
+    height: 180px;
+  }
+} */
+
+
+
+/* .pet-card {
+  width: 300px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+}
+
+.pet-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.pet-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pet-card-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.pet-card-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+  font-weight: 500;
+}
+
+.pet-type-icon {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.pet-card-details {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.pet-card-button-link {
+  margin-top: auto;
+  text-align: center;
+}
+
+.pet-card-button {
+  background-color: #ff7e5f;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.pet-card-button:hover {
+  background-color: #ff997c;
+} */
+
+
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-image-container {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-details-container {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background-color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+  text-align: left;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pet-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.pet-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-weight: 500;
+}
+
+.pet-icon {
+  font-size: 18px;
+  color: #ff7e67;
+}
+
+.pet-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.detail-item {
+  /* flex: 1 1 25%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+  gap: 2px;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #777;
+}
+
+.detail-value {
+  color: #333;
+}
+
+.orange-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ff7e67;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 6px;
+  align-self: center;
+}
+
+.card.loading {
+  pointer-events: none;
+  opacity: 1;
+}
+
+.card.loading .card-image {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.card.loading .card-details-container {
+  opacity: 1; 
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
 @media (max-width: 640px) {
   .card {
     width: 280px !important;
