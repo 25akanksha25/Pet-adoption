@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Pets = () => {
   const [allPets, setAllPets] = useState([]);
   const [pendingPets, setPendingPets] = useState([]);
   const [showAllPets, setShowAllPets] = useState(true); // State to toggle between All Pets and Pending Requests
-
+  const navigate = useNavigate();
+  const token = JSON.parse(localStorage.getItem("userInfo"))?.token;
   // Fetch Pets Data
   const fetchPetsData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/Admin/allPets");
+      // const response = await axios.get("http://localhost:8080/api/Admin/allPets");
+      const response = await axios.get("http://localhost:8080/api/Admin/allPets", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const allPetsData = response.data;
       const pendingPetsData = allPetsData.filter((pet) => !pet.approvedStatus);
       const truepets = allPetsData.filter((pet) => pet.approvedStatus);
@@ -110,6 +117,13 @@ const Pets = () => {
                   </p>
                 </div>
                 <div className=" space-x-5">
+
+                <button
+                    onClick={() => navigate(`/pet/${pet._id}`)}
+                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                  >
+                    View
+                  </button>
                     <button
                     onClick={() => handleApprovePet(pet._id)}
                     className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"

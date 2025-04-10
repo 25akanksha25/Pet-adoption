@@ -3,11 +3,18 @@ import axios from "axios";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const token = JSON.parse(localStorage.getItem("userInfo"))?.token;
 
   // Fetch Users Data
   const fetchUsersData = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/Admin/allUsers");
+      // const response = await axios.get("http://localhost:8080/api/Admin/allUsers");
+
+      const response = await axios.get("http://localhost:8080/api/Admin/allUsers", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log("Users data:", response.data);
       setUsers(response.data);
     } catch (error) {
