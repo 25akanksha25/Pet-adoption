@@ -101,35 +101,49 @@ const PetDescription = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <img 
-            src={`http://localhost:8080/Pet/${pet.images[activeImage].path}`}
-            alt={pet.images[activeImage].path} 
-            className="main-image" 
-          />
-          <div className="image-navigation">
-            {pet.images.map((_, index) => (
-              <motion.div
-                key={index}
-                className={`nav-dot ${index === activeImage ? 'active' : ''}`}
-                onClick={() => handleImageSelect(index)}
-                whileHover={{ scale: 1.2 }}
+          {pet.images && pet.images.length > 0 ? (
+            <>
+              <img 
+                src={`http://localhost:8080/Pet/${pet.images[activeImage]?.path || ''}`}
+                alt={pet.images[activeImage]?.path || 'Pet image'} 
+                className="main-image" 
               />
-            ))}
-          </div>
+              <div className="image-navigation">
+                {pet.images.map((_, index) => (
+                  <motion.div
+                    key={index}
+                    className={`nav-dot ${index === activeImage ? 'active' : ''}`}
+                    onClick={() => handleImageSelect(index)}
+                    whileHover={{ scale: 1.2 }}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="no-image-placeholder">
+              <FaPaw className="placeholder-icon" />
+              <p>No images available</p>
+            </div>
+          )}
         </motion.div>
         
-        <div className="thumbnails-container">
-          {pet.images.map((image, index) => (
-            <motion.div
-              key={index}
-              className={`thumbnail-wrapper ${index === activeImage ? 'active' : ''}`}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => handleImageSelect(index)}
-            >
-              <img src={`http://localhost:8080/Pet/${image.path}`}/>
-            </motion.div>
-          ))}
-        </div>
+        {pet.images && pet.images.length > 0 && (
+          <div className="thumbnails-container">
+            {pet.images.map((image, index) => (
+              <motion.div
+                key={index}
+                className={`thumbnail-wrapper ${index === activeImage ? 'active' : ''}`}
+                whileHover={{ scale: 1.05 }}
+                onClick={() => handleImageSelect(index)}
+              >
+                <img 
+                  src={`http://localhost:8080/Pet/${image?.path || ''}`}
+                  alt={`Thumbnail ${index + 1}`}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         <motion.div 
           className="location-card"

@@ -5,6 +5,7 @@ import petRoutes from './Routes/pet.routes.js';
 import userRoutes from './Routes/user.routes.js';
 import profileRoutes from './Routes/profile.routes.js';
 import rehomingRoutes from './routes/rehoming.routes.js';
+import adoptionRoutes from './Routes/adoption.routes.js'; // Added Adoption Routes
 import { errorHandler } from './Middlewares/errorHandler.js';
 import { handleError } from './utils/error.js';
 import cors from "cors";
@@ -13,7 +14,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import paymentRoute from './Routes/paymentrouter.js';
 import { updatePetStatus } from './Controllers/updatePetStatus.controller.js';
-import AdminRoutes from "./Routes/AdminRoute.js"
+import AdminRoutes from "./Routes/AdminRoute.js";
 
 // Load environment variables
 dotenv.config();
@@ -35,11 +36,12 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+
 
 // Serve static files from the uploads directory
-// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 const corsOptions = {
   origin: "*", 
@@ -60,11 +62,10 @@ app.use('/api/pets', petRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/users", profileRoutes);
 app.use("/api/rehoming", rehomingRoutes);
-
-
-app.use('/api/payment',paymentRoute);
-app.use('/api/change-pet-status',updatePetStatus);
-app.use('/api/Admin' ,  AdminRoutes);
+app.use('/api/adoption', adoptionRoutes); 
+app.use('/api/payment', paymentRoute);
+app.use('/api/change-pet-status', updatePetStatus);
+app.use('/api/Admin', AdminRoutes);
 
 // Error handling middleware
 app.use(handleError); // Handle general errors

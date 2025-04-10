@@ -1,8 +1,28 @@
-import emailjs from "emailjs-com";
+import nodemailer from "nodemailer";
+// import dotenv from "dotenv";
 
-const handleSubmit = () => {
-  emailjs
-    .send("service_id", "template_id", formData, "user_id")
-    .then((res) => console.log("Email sent!", res))
-    .catch((err) => console.error("Email error", err));
+// dotenv.config();
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "ananya1258.be22@chitkara.edu.in",
+    pass: "Ananyagupta1258@",
+  },
+});
+
+const sendEmail = async (to, subject, html) => {
+  try {
+    await transporter.sendMail({
+      from: "ananya1258.be22@chitkara.edu.in",
+      to,
+      subject,
+      html,
+    });
+    console.log("✅ Email sent successfully");
+  } catch (error) {
+    console.error("❌ Error sending email:", error);
+  }
 };
+
+export default sendEmail;
