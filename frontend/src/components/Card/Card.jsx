@@ -59,7 +59,7 @@
 //             <span className="detail-label text-secondary-dark">Size:</span>
 //             <span className="detail-value">{pet.size}</span>
 //           </div>
-          
+
 //         </div>
 //       </div>
 //       <div className="button-container bg-background-light border-t border-background-dark">
@@ -136,6 +136,7 @@
 
 import React from 'react';
 import { FaDog, FaCat } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './Card.css';
 
 const Card = ({ pet }) => {
@@ -154,35 +155,39 @@ const Card = ({ pet }) => {
   return (
     <div className="card">
       <div className="card-image-container">
-        <img 
-          src={`http://localhost:8080/Pet/${pet?.images[0]?.path}`}
-          alt={`${pet.type} - ${pet.name}`}
-          className="card-image"
-          onError={handleImageError}
-        />
+        <Link to={`/petDescription/${pet._id}`} >
+          <img
+            src={`http://localhost:8080/Pet/${pet?.images[0]?.path}`}
+            alt={`${pet.type} - ${pet.name}`}
+            className="card-image"
+            onError={handleImageError}
+          />
+        </Link>
       </div>
 
-      <div className="card-details-container">
-        <h2 className="pet-name">{pet.name}</h2>
-        <div className="pet-type">
-          <PetIcon className="pet-icon" />
-          <span>{pet.breed}</span>
+      <Link to={`/petDescription/${pet._id}`} >
+        <div className="card-details-container">
+          <h2 className="pet-name">{pet.name}</h2>
+          <div className="pet-type">
+            <PetIcon className="pet-icon" />
+            <span>{pet.breed}</span>
+          </div>
+          <div className="pet-details">
+            <div className="detail-item">
+              <span className="orange-dot"></span>
+              <span className="detail-value">{pet.gender}</span>
+            </div>
+            <div className="detail-item">
+              <span className="orange-dot"></span>
+              <span className="detail-value">{pet.size}</span>
+            </div>
+            <div className="detail-item">
+              <span className="orange-dot"></span>
+              <span className="detail-value">{pet.age} years</span>
+            </div>
+          </div>
         </div>
-        <div className="pet-details">
-          <div className="detail-item">
-            <span className="orange-dot"></span>
-            <span className="detail-value">{pet.gender}</span>
-          </div>
-          <div className="detail-item">
-            <span className="orange-dot"></span>
-            <span className="detail-value">{pet.size}</span>
-          </div>
-          <div className="detail-item"> 
-            <span className="orange-dot"></span>
-            <span className="detail-value">{pet.age} years</span>
-          </div>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
