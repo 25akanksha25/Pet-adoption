@@ -7,7 +7,7 @@
   text-align: center;
   padding: 2rem 1rem;
   margin-bottom: 1rem;
-  background-color: #7b75fc;
+  background-color: rgb(62, 98, 62);
   color: white;
   position: relative;
   overflow: hidden;
@@ -78,18 +78,18 @@
 .filters-header h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .filters-header h2 svg {
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
 }
 
 .reset-filters-btn {
-  background-color:  #6c63ff;
+  background-color:  rgb(62, 98, 62);
   color: #f0f0ff;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -103,9 +103,9 @@
 }
 
 .reset-filters-btn:hover {
-  background-color: #6c63ff;
-  color: white;
-  border-color: #6c63ff;
+  background-color: transparent;
+  color: rgb(62, 98, 62);
+  border:2px rgb(62, 98, 62) solid ;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
 }
@@ -120,7 +120,7 @@
   padding: 0.5rem;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: #6c63ff transparent;
+  scrollbar-color: rgb(62, 98, 62)transparent;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   padding-bottom: 0.5rem;
@@ -136,7 +136,7 @@
 }
 
 .filter-groups-container::-webkit-scrollbar-thumb {
-  background-color: #6c63ff;
+  background-color: rgb(62, 98, 62);
   border-radius: 3px;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .filter-group:hover {
-  border-color: #6c63ff;
+  border-color: rgb(62, 98, 62);
   box-shadow: 0 2px 8px rgba(108, 99, 255, 0.15);
 }
 
@@ -160,12 +160,12 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   font-weight: 500;
 }
 
 .filter-label svg {
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   font-size: 1.1rem;
 }
 
@@ -181,12 +181,12 @@
 }
 
 .filter-input:hover {
-  border-color: #6c63ff;
+  border-color: rgb(62, 98, 62);
 }
 
 .filter-input:focus {
   outline: none;
-  border-color: #6c63ff;
+  border-color: rgb(62, 98, 62);
   box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
 }
 

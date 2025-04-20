@@ -48,13 +48,13 @@
 }
 
 .social-links a {
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   font-size: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-  color: #5a52e0;
+  color: rgb(62, 98, 62);
   transform: translateY(-2px);
 }
 
@@ -73,7 +73,7 @@
   bottom: -0.5rem;
   width: 50px;
   height: 2px;
-  background-color: #6c63ff;
+  background-color: rgb(62, 98, 62);
 }
 
 .footer-section ul {
@@ -93,7 +93,7 @@
 }
 
 .footer-section ul li a:hover {
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   transform: translateX(5px);
 }
 
@@ -111,7 +111,7 @@
 }
 
 .contact-info li svg {
-  color: #6c63ff;
+  color: rgb(62, 98, 62);
   font-size: 1.2rem;
 }
 
@@ -133,13 +133,13 @@
 
 .newsletter-form input:focus {
   outline: none;
-  border-color: #6c63ff;
+  border-color: rgb(62, 98, 62);
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
 }
 
 .newsletter-form button {
   padding: 0.8rem 1.5rem;
-  background-color: #6c63ff;
+  background-color: rgb(62, 98, 62);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -149,7 +149,7 @@
 }
 
 .newsletter-form button:hover {
-  background-color: #5a52e0;
+  background-color: rgb(62, 98, 62);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
 }

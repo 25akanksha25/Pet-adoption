@@ -41,7 +41,13 @@ const Pets = () => {
   // Delete Pet
   const handleDeletePet = async (id) => {
     try {
-        await axios.post("http://localhost:8080/api/Admin/deletePets/${id}", { id, status: false });
+        // await axios.post(`http://localhost:8080/api/Admin/deletePets/${id}`, { id, status: false });
+        await axios.delete(`http://localhost:8080/api/Admin/deletePets/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+        
         fetchPetsData();
         // window.location.reload();
       } catch (error) {
@@ -92,12 +98,20 @@ const Pets = () => {
                     <strong>Type:</strong> {pet.type}
                   </p>
                 </div>
+                <div className="flex space-x-4">
+                <button
+                    onClick={() => navigate(`/petDescription/${pet._id}`)}
+                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                  >
+                    View
+                  </button>
                 <button
                   onClick={() => handleDeletePet(pet._id)}
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                 >
                   Delete
                 </button>
+                </div>
               </div>
             ))}
           </div>
@@ -119,7 +133,7 @@ const Pets = () => {
                 <div className=" space-x-5">
 
                 <button
-                    onClick={() => navigate(`/pet/${pet._id}`)}
+                    onClick={() => navigate(`/petDescription/${pet._id}`)}
                     className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                   >
                     View

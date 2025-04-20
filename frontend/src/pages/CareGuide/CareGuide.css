@@ -14,7 +14,7 @@
 }
 
 .care-guide-header h1 {
-    color: #6C63FF;
+    color: rgb(62, 98, 62);
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
@@ -36,9 +36,9 @@
 .toggle-btn {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    border: 2px solid #6C63FF;
+    border: 2px solid rgb(62, 98, 62);
     background: transparent;
-    color: #6C63FF;
+    color: rgb(62, 98, 62);
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -46,14 +46,14 @@
 }
 
 .toggle-btn:hover {
-    background: #6C63FF;
+    background: rgb(62, 98, 62);
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(39, 73, 109, 0.1);
 }
 
 .toggle-btn.active {
-    background: #6C63FF;
+    background: rgb(62, 98, 62);
     color: white;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .pet-care-guide h2 {
-    color: #6C63FF;
+    color: rgb(62, 98, 62);
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -110,11 +110,11 @@
 }
 
 .care-section h3 {
-    color: #6C63FF;
+    color: rgb(62, 98, 62);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #6C63FF;
+    border-bottom: 2px solid rgb(62, 98, 62);
     font-weight: 600;
 }
 
@@ -134,7 +134,7 @@
 
 .care-section li::before {
     content: "•";
-    color: #6C63FF;
+    color: rgb(62, 98, 62);
     position: absolute;
     left: 0;
     font-size: 1.2rem;

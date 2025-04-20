@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Hero from "../../components/Hero/Hero";
+import AboutHome from "../../components/AboutHomePage/AboutHome"
 import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -60,6 +61,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <Hero />
+      <AboutHome/>
       
       <motion.section 
         className="pets-section"
@@ -71,9 +73,9 @@ const LandingPage = () => {
         <motion.h1
           variants={scaleIn}
           style={{
-            fontSize: "2.5rem",
+            fontSize: "3.5rem",
             fontWeight: "800",
-            color: "#362B85",
+            color: "rgb(62, 98, 62)",
             fontFamily: "'Montserrat', sans-serif",
             textAlign: "center",
             margin: "30px 0",

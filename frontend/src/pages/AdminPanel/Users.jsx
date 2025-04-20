@@ -25,7 +25,13 @@ const Users = () => {
   // Delete User
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/Admin/deleteUser/${id}`);
+      // await axios.delete(`http://localhost:8080/api/Admin/deleteUser/${id}`);
+      await axios.delete(`http://localhost:8080/api/Admin/deleteUser/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      
       // window.location.reload();
       // fetchUsersData(); 
       setUsers(prevUsers => prevUsers.filter(user => user._id !== id));

@@ -16,6 +16,10 @@ const PetDescription = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const userInfo = localStorage.getItem('userInfo');
+  const user = userInfo ? JSON.parse(userInfo) : null;
+
+
   useEffect(() => {
     const fetchPet = async () => {
       try {
@@ -269,7 +273,7 @@ const PetDescription = () => {
           </div>
         )}
 
-        <motion.div 
+        {/* <motion.div 
           className="adoption-cta"
           whileHover={{ scale: 1.02 }}
         >
@@ -283,7 +287,26 @@ const PetDescription = () => {
           >
             Start Adoption Process
           </motion.button>
-        </motion.div>
+        </motion.div> */}
+
+        {user?.role !== 'admin' && (
+  <motion.div 
+    className="adoption-cta"
+    whileHover={{ scale: 1.02 }}
+  >
+    <h2>Ready to Welcome {pet.name} Home?</h2>
+    <p>Start your adoption journey today!</p>
+    <motion.button
+      className="adopt-button"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={() => navigate('/choose-to-adopt', { state: { petId: id } })}
+    >
+      Start Adoption Process
+    </motion.button>
+  </motion.div>
+)}
+
       </div>
     </motion.div>
   );

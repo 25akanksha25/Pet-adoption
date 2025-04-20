@@ -201,6 +201,7 @@ const App = () => {
       
       <main>
         <Routes>
+          <Route path="/petDescription/:id" element={<PetDescription />} />
           {user?.role === "admin" ? (
             <>
               <Route path="/admin-panel" element={<AdminPanel />} />
@@ -212,7 +213,6 @@ const App = () => {
             <>
               <Route path="/" element={<LandingPage pets={pets} />} />
               <Route path="/adopt" element={<AdoptPage pets={pets} />} />
-              <Route path="/petDescription/:id" element={<PetDescription />} />
               <Route path="/profile" element={<UpdateProfile />} />
               <Route path="/choose-to-adopt" element={<ChooseToAdopt />} />
               <Route path="/rehome" element={<RehomePage />} />

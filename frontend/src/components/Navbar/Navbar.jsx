@@ -45,8 +45,7 @@ const Navbar = ({ handleLoginPopup, user, setUser }) => {
           {user ? (
             <UserMenu user={user} setUser={setUser} />
           ) : (
-            <button
-              className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-6 rounded-lg shadow-md hover:shadow-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 transition-all duration-300"
+            <button className="login-btn"
               onClick={handleLoginPopup}
             >
               Login

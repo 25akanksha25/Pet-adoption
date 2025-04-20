@@ -26,9 +26,9 @@ const ReviewAndFAQ = () => {
       {/* Review Section */}
       <div className="review-section">
         <h2  style={{
-          fontSize: "2.5rem",
+          fontSize: "3.5rem",
           fontWeight: "800",
-          color: "#362B85",
+          color: "rgb(62, 98, 62)",
           fontFamily: "'Montserrat', sans-serif",
           textAlign: "center", // Optional for centering
           margin: "30px 0",
@@ -53,9 +53,9 @@ const ReviewAndFAQ = () => {
       {/* FAQ Section */}
       <div className="faq-section">
         <h2  style={{
-            fontSize: "2.5rem",
+            fontSize: "3.5rem",
             fontWeight: "800",
-            color: "#362B85",
+            color: "rgb(62, 98, 62)",
             fontFamily: "'Montserrat', sans-serif",
             textAlign: "center", // Optional for centering
             margin: "30px 0",

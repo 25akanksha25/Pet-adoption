@@ -8,10 +8,10 @@
 }
 
 .write-review-container h2 {
-    color: #27496d;
+    color: rgb(62, 98, 62);
     text-align: center;
     margin-bottom: 2rem;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 600;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .submit-review-btn {
-    background-color: #27496d;
+    background-color: rgb(62, 98, 62);
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -68,7 +68,9 @@
 }
 
 .submit-review-btn:hover {
-    background-color: #142b44;
+    background-color: transparent;
+    border: 2px rgb(62, 98, 62) solid;
+    color: rgb(62, 98, 62);
 }
 
 @media (max-width: 768px) {

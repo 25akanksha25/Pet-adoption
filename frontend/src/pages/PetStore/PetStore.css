@@ -21,7 +21,7 @@
   }
   
   .store-header h1 {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
     margin: 0;
     font-size: 2rem;
     font-weight: 700;
@@ -47,7 +47,7 @@
   
   .search-bar input:focus {
     outline: none;
-    border-color: #7442ff;
+    border-color: rgb(62, 98, 62);
     box-shadow: 0 0 0 3px rgba(116, 66, 255, 0.1);
   }
   
@@ -79,7 +79,7 @@
   }
   
   .wishlist-icon:hover, .cart-icon:hover {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
     background-color: rgba(116, 66, 255, 0.05);
   }
   
@@ -87,7 +87,7 @@
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #7442ff;
+    background: rgb(62, 98, 62);
     color: white;
     font-size: 0.75rem;
     padding: 2px 6px;
@@ -122,12 +122,12 @@
   }
   
   .category-btn:hover {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
     background-color: rgba(116, 66, 255, 0.05);
   }
   
   .category-btn.active {
-    background: #7442ff;
+    background: rgb(62, 98, 62);
     color: white;
     box-shadow: 0 4px 6px rgba(116, 66, 255, 0.2);
   }
@@ -191,7 +191,7 @@
   }
   
   .wishlist-btn.active svg {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
   }
   
   .wishlist-btn:hover {
@@ -200,7 +200,7 @@
   }
   
   .wishlist-btn:hover svg {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
   }
   
   .product-info {
@@ -228,13 +228,13 @@
   }
   
   .price {
-    color: #7442ff;
+    color: rgb(62, 98, 62);
     font-weight: 700;
     font-size: 1.2rem;
   }
   
   .add-to-cart {
-    background: #7442ff;
+    background: rgb(62, 98, 62);
     color: white;
     border: none;
     padding: 0.8rem 1.2rem;

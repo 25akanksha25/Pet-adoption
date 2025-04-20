@@ -14,12 +14,12 @@ const RehomePage = () => {
   return (
     <div className="rehome-page">
       {/* Hero Section */}
-      <section className="hero-section" style={{ backgroundColor: '#f0f8ff', padding: '40px', borderRadius: '15px', textAlign: 'center' }}>
+      <section className="hero-section" style={{  padding: '40px', borderRadius: '15px', textAlign: 'center' }}>
         <div className="hero-text">
           <h1 style={{
                 fontSize: "2.5rem",
                 fontWeight: "800",
-                color: "#27496d",
+                color: "rgb(62, 98, 62)",
                 fontFamily: "'Montserrat', sans-serif",
                 margin: "30px 0",
             }}>Rehome Your Pet With Love & Care</h1>
@@ -35,7 +35,7 @@ const RehomePage = () => {
           <Link to="/choose-to-rehome"><button onClick={handleRehomeClick} style={{
                 padding: '10px 20px',
                 fontSize: '1rem',
-                backgroundColor: '#27496d',
+                backgroundColor: 'rgb(62, 98, 62)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',
@@ -57,7 +57,7 @@ const RehomePage = () => {
         <h2 style={{
                 fontSize: "2.5rem",
                 fontWeight: "800",
-                color: "#27496d",
+                color: "rgb(62, 98, 62)",
                 fontFamily: "'Montserrat', sans-serif",
                 margin: "30px 0",
             }}>How It Works</h2>
@@ -103,7 +103,7 @@ const RehomePage = () => {
         <h2 style={{
                 fontSize: "2.5rem",
                 fontWeight: "800",
-                color: "#27496d",
+                color: "rgb(62, 98, 62)",
                 fontFamily: "'Montserrat', sans-serif",
                 margin: "30px 0",
             }}>Your Pet's Safety, Our Priority</h2>
@@ -124,7 +124,7 @@ const RehomePage = () => {
         <h2 style={{
                 fontSize: "2.5rem",
                 fontWeight: "800",
-                color: "#27496d",
+                color: "rgb(62, 98, 62)",
                 fontFamily: "'Montserrat', sans-serif",
                 margin: "30px 0",
             }}>Ready to Rehome Your Pet?</h2>

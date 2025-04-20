@@ -22,7 +22,7 @@
 
 .hero-text h1 {
     font-size: 3.5rem;
-    color: #27496d;
+    color: rgb(62, 98, 62);
     margin-bottom: 30px;
     line-height: 1.2;
 }
@@ -50,7 +50,7 @@
 
 .how-it-works h2 {
     font-size: 2.5rem;
-    color: #27496d;
+    color: rgb(62, 98, 62);
     margin-bottom: 50px;
 }
 
