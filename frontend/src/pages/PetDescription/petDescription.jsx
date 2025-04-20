@@ -7,6 +7,8 @@ import {
   FaPalette, FaGlobe, FaCut, FaSearch
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PetDescription = () => {
   const [pet, setPet] = useState(null);
@@ -28,7 +30,7 @@ const PetDescription = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Saubrabh",data.images)
+        // console.log("Pet Data",data.images)
         setPet(data);
       } catch (err) {
         console.error("Error fetching pet data:", err);
@@ -300,7 +302,13 @@ const PetDescription = () => {
       className="adopt-button"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      onClick={() => navigate('/choose-to-adopt', { state: { petId: id } })}
+      onClick={() => {
+        if (!user) {
+          toast.error("Please login to continue with adoption");
+          return;
+        }
+        navigate('/choose-to-adopt', { state: { petId: id } });
+      }}
     >
       Start Adoption Process
     </motion.button>

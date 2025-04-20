@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/adopt", submitAdoptionRequest);
 
 // Get all adoption requests (for admin)
-router.get("/adoption-requests", getAdoptionRequests);
+router.get("/requests", getAdoptionRequests);
 
 
 export default router;

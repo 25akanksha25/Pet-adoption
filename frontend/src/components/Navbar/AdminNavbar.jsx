@@ -91,7 +91,7 @@ const AdminNavbar = ({ handleLoginPopup, user, setUser }) => {
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><Link to="/admin/pets">All Pets</Link></li>
           <li><Link to="/admin/users">All Users</Link></li>
-          <li><Link to="/admin/store-inventory">Store Inventory</Link></li>
+          <li><Link to="/admin/adoption-requests">Adoption Requests</Link></li>
         </ul>
 
         {/* Right Section */}

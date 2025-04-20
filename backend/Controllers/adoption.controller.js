@@ -16,12 +16,16 @@ export const submitAdoptionRequest = async (req, res, next) => {
       status: { $in: ["pending", "approved"] } // Check both pending and approved status
     });
 
-    if (existingRequest) {
-      return res.status(400).json({
-        success: false,
-        message: "You already have an active adoption request for this pet"
-      });
-    }
+    // if (existingRequest) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "You already have an active adoption request for this pet"
+    //   });
+    // }
+
+    // Fetch pet details
+    const pet = await Pet.findById(petId);
+    if (!pet) return next(createError(404, "Pet not found"));
 
     // Create and save adopter record
     const adopter = new Adopter({
@@ -32,47 +36,46 @@ export const submitAdoptionRequest = async (req, res, next) => {
 
     await adopter.save();
 
-    // Fetch pet details
-    const pet = await Pet.findById(petId);
-    if (!pet) return next(createError(404, "Pet not found"));
-
-    // Check if rehomer email exists
-    if (!pet.rehomerEmail) {
+    // Find admin user
+    const admin = await User.findOne({ role: 'admin' });
+    if (!admin) {
       return res.status(400).json({
         success: false,
-        message: "Unable to process adoption request. Rehomer information not found."
+        message: "Unable to process adoption request. Admin account not found."
       });
     }
 
-    // Find the rehomer's user details
-    const rehomer = await User.findOne({ email: pet.rehomerEmail });
-    if (!rehomer) {
-      return res.status(400).json({
-        success: false,
-        message: "Unable to process adoption request. Rehomer account not found."
-      });
-    }
-
-    // Send email notification to the rehomer
-    const emailSubject = "New Adoption Request for Your Pet";
+    // Send email notification to the adopter
+    const emailSubject = "Adoption Request Confirmation";
     const emailBody = `
-      <p>Hello ${rehomer.name || 'Pet Rehomer'},</p>
-      <p>Someone has shown interest in adopting <strong>${pet.name}</strong>.</p>
-      <p><strong>Adopter Details:</strong></p>
+      <p>Hello ${adopterInfo.fullName},</p>
+      <p>Thank you for your adoption request for <strong>${pet.name}</strong>.</p>
+      <p><strong>Pet Details:</strong></p>
+      <ul>
+        <li><strong>Name:</strong> ${pet.name}</li>
+        <li><strong>Type:</strong> ${pet.type}</li>
+        <li><strong>Breed:</strong> ${pet.breed}</li>
+      </ul>
+      <p><strong>Your Details:</strong></p>
       <ul>
         <li><strong>Name:</strong> ${adopterInfo.fullName}</li>
         <li><strong>Email:</strong> ${adopterInfo.email}</li>
         <li><strong>Phone:</strong> ${adopterInfo.phone}</li>
       </ul>
-      <p>Please reach out to the adopter directly to proceed.</p>
-      <p>Best Regards,<br>Pet Adoption Team</p>
+      <p>Our admin team will review your request and get back to you soon.</p>
+      <p>Best Regards,<br>Pet Adoption System</p>
     `;
 
-    await sendEmail(pet.rehomerEmail, emailSubject, emailBody);
+    const emailSent = await sendEmail(adopterInfo.email, emailSubject, emailBody);
+    
+    if (!emailSent) {
+      console.error("Failed to send email to adopter");
+      // Still return success to user since the adoption request was saved
+    }
 
     res.status(201).json({
       success: true,
-      message: "Adoption request submitted successfully",
+      message: "Your adoption request has been submitted successfully. Our admin team will review your request and get back to you soon.",
     });
   } catch (err) {
     next(err);

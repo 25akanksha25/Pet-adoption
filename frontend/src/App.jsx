@@ -157,6 +157,7 @@ import Pets from "./pages/AdminPanel/Pets";
 import Users from "./pages/AdminPanel/Users";
 import PetStore from "./pages/PetStore/PetStore";
 import ScrollToTop from "./components/Scroll/ScrollToTop";
+import AdoptionRequests from "./pages/AdminPanel/AdoptionRequests";
 
 const App = () => {
   const [loginPopup, setLoginPopup] = useState(false);
@@ -207,6 +208,7 @@ const App = () => {
               <Route path="/admin-panel" element={<AdminPanel />} />
               <Route path="/admin/pets" element={<Pets />} />
               <Route path="/admin/users" element={<Users />} />
+              <Route path="/admin/adoption-requests" element={<AdoptionRequests />} />
               <Route path="*" element={<Navigate to="/admin-panel" />} />
             </>
           ) : (
