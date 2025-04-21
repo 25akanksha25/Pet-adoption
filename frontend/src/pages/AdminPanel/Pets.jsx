@@ -67,16 +67,16 @@ const Pets = () => {
       <div className="flex items-center justify-center mb-6 space-x-5">
         <button
           className={`px-4 py-2 ${
-            showAllPets ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-700"
-          } rounded-l hover:bg-blue-600`}
+            showAllPets ? "bg-[#3e623e] text-white" : "bg-[#3e623e93] text-white"
+          } rounded-l hover:bg-[#2e492e]`}
           onClick={() => setShowAllPets(true)}
         >
           All Pets
         </button>
         <button
           className={`px-4 py-2 ${
-            !showAllPets ? "bg-blue-500 text-white" : "bg-gray-300 text-gray-700"
-          } rounded-r hover:bg-blue-600`}
+            !showAllPets ? "bg-[#3e623e] text-white" : "bg-[#3e623e93] text-white"
+          } rounded-r hover:bg-[#2e492e]`}
           onClick={() => setShowAllPets(false)}
         >
           Pending Requests
@@ -101,7 +101,7 @@ const Pets = () => {
                 <div className="flex space-x-4">
                 <button
                     onClick={() => navigate(`/petDescription/${pet._id}`)}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    className="px-4 py-2 bg-[#3e623e] text-white rounded hover:bg-[#213421]"
                   >
                     View
                   </button>
@@ -134,13 +134,13 @@ const Pets = () => {
 
                 <button
                     onClick={() => navigate(`/petDescription/${pet._id}`)}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    className="px-4 py-2 bg-[#3e623e] text-white rounded hover:bg-[#2d452d]"
                   >
                     View
                   </button>
                     <button
                     onClick={() => handleApprovePet(pet._id)}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className="px-4 py-2 bg-[#518fa7] text-white rounded hover:bg-[#2e5260]"
                     >
                     Approve
                     </button>

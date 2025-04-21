@@ -137,15 +137,15 @@ const AdoptionRequests = () => {
               <div className="flex space-x-4">
                 <Link to={`/petDescription/${request.petDetails?._id}`}>
                 <button 
-                  className="flex items-center gap-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+                  className="flex items-center gap-2 bg-[#3e623e] text-white py-2 px-4 rounded-lg hover:bg-[#1e2d1e] transition-colors"
                 >
-                  <FaEye /> View
+                  <FaEye /> Pet
                 </button></Link>
                 <button 
                   onClick={() => handleViewFormDetails(request)}
-                  className="flex items-center gap-2 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition-colors"
+                  className="flex items-center gap-2 bg-[#518fa7] text-white py-2 px-4 rounded-lg hover:bg-[#345b6b] transition-colors"
                 >
-                  <FaInfoCircle /> Adopter Details
+                  <FaInfoCircle /> Adopter
                 </button>
               </div>
             </div>

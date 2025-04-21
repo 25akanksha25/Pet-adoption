@@ -9,6 +9,9 @@ const UserMenu = ({ user, setUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const userInfo = localStorage.getItem('userInfo');
+  const localuser = userInfo ? JSON.parse(userInfo) : null;
+  const isAdmin = localuser?.role === 'admin';
 
   const [mail, setmail] = useState("");
 
@@ -68,12 +71,15 @@ const UserMenu = ({ user, setUser }) => {
 
       {isOpen && (
         <div className="dropdown-menu">
+        {!isAdmin && (
+          <>
           <div className="menu-item" onClick={handleProfile}>
             <FaUser />
             <span>Profile</span>
           </div>
-            <div className="menu-divider"></div>
-
+          <div className="menu-divider"></div>
+          </>
+        )}
             {
               mail == "admin@gmail.com" ? <>
               <div className="menu-item" onClick={handleAdmin}>
