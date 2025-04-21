@@ -264,7 +264,7 @@ const renderField = (field, label, disabled = false) => (
           <button
             onClick={() => handleSaveField(field)}
             disabled={isLoading}
-            className="p-2 text-purple-600 hover:text-purple-700"
+            className="p-2 bg-[#3e623e] hover:bg-[#243924]"
           >
             <FaCheck style={{ color: '#ffffff', cursor: 'pointer' }} />
           </button>
@@ -288,7 +288,7 @@ const renderField = (field, label, disabled = false) => (
             <button
               onClick={() => handleEditField(field)}
               disabled={isLoading}
-              className="p-2 text-purple-600 hover:text-purple-700"
+              className="p-2 bg-[#3e623e] hover:bg-[#2b432b]"
             >
               <FaEdit style={{ color: '#ffffff', cursor: 'pointer' }} />
             </button>
@@ -351,7 +351,7 @@ const renderStateAndPincodeFields = () => (
           <button
             onClick={handleEditStateAndPincode}
             disabled={isLoading}
-            className="p-2 text-purple-600 hover:text-purple-700"
+            className="p-2 bg-[#3e623e] hover:bg-[#233723]"
           >
             <FaEdit style={{ color: '#ffffff', cursor: 'pointer' }} />
           </button>
@@ -384,7 +384,7 @@ return (
           transition={{ duration: 0.5 }}
           className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden"
         >
-          <div className="bg-purple-600 p-6">
+          <div className="bg-[#3e623e] p-6">
             <h1 className="text-2xl font-bold text-white flex items-center gap-2">
               <FaPaw style={{ color: '#ffffff', cursor: 'pointer' }} /> Profile Settings
             </h1>
@@ -404,7 +404,7 @@ return (
                     }}
                   />
                 </div>
-                <label className="absolute bottom-0 right-0 bg-purple-500 p-2 rounded-full cursor-pointer hover:bg-purple-600 transition-colors">
+                <label className="absolute bottom-0 right-0 bg-[#3e623e] p-2 rounded-full cursor-pointer hover:bg-purple-600 transition-colors">
                   <FaCamera style={{ color: '#ffffff', fontSize: '1.5rem' }} />
                   <input
                     type="file"
@@ -434,7 +434,7 @@ return (
             {!showPasswordSection ? (
               <button
                 onClick={() => setShowPasswordSection(true)}
-                className="w-full py-2 px-4 border border-purple-500 text-white rounded-lg hover:bg-purple-50 transition-colors duration-200"
+                className="w-full py-2 px-4 border bg-[#3e623e] text-white rounded-lg hover:bg-[#243824] transition-colors duration-200"
               >
                 Change Password
               </button>
