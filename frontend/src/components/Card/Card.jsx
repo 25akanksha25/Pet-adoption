@@ -157,7 +157,7 @@ const Card = ({ pet }) => {
       <div className="card-image-container">
         <Link to={`/petDescription/${pet._id}`} >
           <img
-            src={`http://localhost:8080/Pet/${pet?.images[0]?.path}`}
+            src={`http://localhost:8080/${pet?.images[0]?.path.replace('public/', '') || ''}`}
             alt={`${pet.type} - ${pet.name}`}
             className="card-image"
             onError={handleImageError}

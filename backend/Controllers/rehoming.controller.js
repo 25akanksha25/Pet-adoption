@@ -1,12 +1,13 @@
 import Pet from "../Models/pet.models.js";
 import Rehomer from "../Models/rehomer.models.js";
 import { createError } from "../utils/error.js";
+import path from 'path';
 
 // get path
 const getRelativePath = (filename) => {
   if (!filename) return undefined;
   if (filename.startsWith('http')) return filename;
-  return path.join('/uploads/multiplePhotos/', path.basename(filename)).replace(/\\/g, '/');
+  return path.join('Pet', path.basename(filename)).replace(/\\/g, '/');
 };
 
 // Initialize rehoming process
@@ -262,19 +263,24 @@ export const updatePetInfoStep = async (req, res, next) => {
         break;
 
       case 3: // Pet's Images
-        // pet.images = petData.images;
-        // break;
-        // console.log("Sauabh fiole upload",req.files);
-        console.log("Sauabh fiole upload",pet.images);
-        console.log("Pet Data  fiole upload",petData.images);
-        
+        console.log("Files received:", req.files);
+        console.log("Current pet images:", pet.images);
+        console.log("Pet Data images:", petData.images);
 
         if (req.files && req.files.length > 0) {
-          pet.images = req.files.map(file => ({
-            path: getRelativePath(file.filename),
-            filename: file.originalname
-          }));
+          console.log("Processing files...");
+          const newImages = req.files.map(file => {
+            const path = getRelativePath(file.filename);
+            console.log("Generated path for file:", file.filename, "->", path);
+            return {
+              path: path,
+              filename: file.originalname
+            };
+          });
+          console.log("New images to be saved:", newImages);
+          pet.images = newImages;
         } else {
+          console.log("No new files received, keeping existing images:", petData.images);
           pet.images = petData.images;
         }
         break;
@@ -429,8 +435,8 @@ export const getPetDetails = async (req, res, next) => {
 export const uploadPetImages= async (req, res, next) => {
   try {
     const images = req.files.map(file => ({
-      path: `${file.filename}`,
-      filename:file.originalname
+      path: getRelativePath(file.filename),
+      filename: file.originalname
     }));
 
     // Assuming you have the petId in the request body
@@ -449,5 +455,4 @@ export const uploadPetImages= async (req, res, next) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-
 }

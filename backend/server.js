@@ -4,7 +4,7 @@ import connectDB from './config/db.js';
 import petRoutes from './Routes/pet.routes.js';
 import userRoutes from './Routes/user.routes.js';
 import profileRoutes from './Routes/profile.routes.js';
-import rehomingRoutes from './routes/rehoming.routes.js';
+import rehomingRoutes from './Routes/rehoming.routes.js';
 import adoptionRoutes from './Routes/adoption.routes.js'; // Added Adoption Routes
 import { errorHandler } from './Middlewares/errorHandler.js';
 import { handleError } from './utils/error.js';
