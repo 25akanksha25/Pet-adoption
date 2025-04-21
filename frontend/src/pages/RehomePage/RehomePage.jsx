@@ -14,7 +14,7 @@ const RehomePage = () => {
   return (
     <div className="rehome-page">
       {/* Hero Section */}
-      <section className="hero-section" style={{  padding: '40px', borderRadius: '15px', textAlign: 'center' }}>
+      {/* <section className="hero-section" style={{  padding: '40px', borderRadius: '15px', textAlign: 'center' }}>
         <div className="hero-text">
           <h1 style={{
                 fontSize: "2.5rem",
@@ -50,8 +50,16 @@ const RehomePage = () => {
             style={{ width: "100%", maxWidth: "500px" }}
           />
         </div>
-      </section>
+      </section> */}
 
+      <div>
+  <img 
+    src="../../assets/admin.png"
+    alt="Admin Dashboard" 
+    style={{ width: '100vw', height: '100vh', marginBottom: '20px' }} 
+  />
+  {/* <h1>This is the Admin Dashboard and is currently in progress.</h1> */}
+</div>
       {/* How It Works Section */}
       <div className="how-it-works">
         <h2 style={{

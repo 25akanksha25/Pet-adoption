@@ -60,22 +60,30 @@ const Pets = () => {
   }, []);
 
   return (
-    <div className="p-10">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Pets</h2>
+    <div>
+      <div>
+        <img 
+          src="../../assets/adopt.png"
+          alt="Admin Dashboard" 
+          style={{ width: '100vw', height: '80vh', marginBottom: '20px' }} 
+        />
+        {/* <h1>This is the Admin Dashboard and is currently in progress.</h1> */}
+      </div>
+      {/* <h2 className="text-2xl font-semibold text-gray-800 mb-4">Pets</h2> */}
 
       {/* Toggle Slider */}
       <div className="flex items-center justify-center mb-6 space-x-5">
         <button
-          className={`px-4 py-2 ${
-            showAllPets ? "bg-[#3e623e] text-white" : "bg-[#3e623e93] text-white"
+          className={`px-8 py-3 ${
+            showAllPets ? "bg-[#3e623e] text-white text-xl" : "bg-[#3e623e93] text-white"
           } rounded-l hover:bg-[#2e492e]`}
           onClick={() => setShowAllPets(true)}
         >
           All Pets
         </button>
         <button
-          className={`px-4 py-2 ${
-            !showAllPets ? "bg-[#3e623e] text-white" : "bg-[#3e623e93] text-white"
+          className={`px-8 py-3 ${
+            !showAllPets ? "bg-[#3e623e] text-white text-xl" : "bg-[#3e623e93] text-white"
           } rounded-r hover:bg-[#2e492e]`}
           onClick={() => setShowAllPets(false)}
         >
@@ -85,12 +93,12 @@ const Pets = () => {
 
       {/* Content Section */}
       {showAllPets ? (
-        <section className="mb-8">
-          <h3 className="text-xl font-medium text-gray-700 mb-2">All Pets</h3>
+        <section className="mb-8 p-10">
+          <h3 className="text-4xl font-medium text-gray-700 mb-2 px-10">All Pets</h3>
           <div className="space-y-4">
             {allPets.map((pet) => (
               <div key={pet._id} className="p-4 bg-white rounded shadow flex justify-between">
-                <div>
+                <div className="text-lg">
                   <p>
                     <strong>Pet Name:</strong> {pet.name}
                   </p>
@@ -118,11 +126,11 @@ const Pets = () => {
         </section>
       ) : (
         <section>
-          <h3 className="text-xl font-medium text-gray-700 mb-2">Pending Requests</h3>
-          <div className="space-y-4">
+          <h3 className="text-4xl font-medium text-gray-700 mb-2 px-10">Pending Requests</h3>
+          <div className="space-y-4 px-10">
             {pendingPets.map((pet) => (
               <div key={pet._id} className="p-4 bg-white rounded shadow flex justify-between">
-                <div>
+                <div className="text-lg">
                   <p>
                     <strong>Pet Name:</strong> {pet.name}
                   </p>

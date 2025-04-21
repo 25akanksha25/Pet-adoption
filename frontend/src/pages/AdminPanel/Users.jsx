@@ -47,10 +47,10 @@ const Users = () => {
 
   return (
     <div className="p-10">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Users</h2>
+      <h2 className="text-4xl font-semibold text-gray-800 mb-4">Users</h2>
       <div className="space-y-4">
         {users.map((user) => (
-          <div key={user._id} className="p-4 bg-white rounded shadow flex justify-between">
+          <div key={user._id} className="p-4 bg-white text-lg rounded shadow flex justify-between">
             <p>
               <strong>Name:</strong> {user.name}
             </p>
