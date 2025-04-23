@@ -78,7 +78,7 @@ const AdminNavbar = ({ handleLoginPopup, user, setUser }) => {
       <div className="navbar-container">
         {/* Logo */}
         <Link to="/admin" className="logo">
-          <img src="/assets/paws4home_logo.png" alt="Logo" className="logo-image" />
+          <img src="/assets/petlogo.png" alt="Logo" className="logo-image" />
           <span>Admin Panel</span>
         </Link>
 
