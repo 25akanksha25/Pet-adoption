@@ -10,8 +10,15 @@ const __dirname = path.dirname(__filename);
 // Configure multer for local storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-
-    cb(null, 'public/Pet' );
+    // Use path.join to create a path relative to the current file
+    const uploadPath = path.join(__dirname, '..', 'public', 'Pet');
+    
+    // Create directory if it doesn't exist
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    
+    cb(null, uploadPath);
   },
 
   filename: (req, file, cb) => {

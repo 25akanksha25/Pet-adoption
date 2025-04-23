@@ -30,7 +30,12 @@ const PetDescription = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // console.log("Pet Data",data.images)
+        console.log("Fetched pet data:", data);
+        console.log("Pet images:", JSON.stringify(data.images, null, 2));
+        if (data.images && data.images.length > 0) {
+          console.log("First image path:", data.images[0].path);
+          console.log("Full image URL:", `http://localhost:8080/${data.images[0].path}`);
+        }
         setPet(data);
       } catch (err) {
         console.error("Error fetching pet data:", err);
@@ -44,6 +49,13 @@ const PetDescription = () => {
 
   const handleImageSelect = (index) => {
     setActiveImage(index);
+  };
+
+  const handleImageError = (e) => {
+    console.log("Image failed to load:", e.target.src);
+    console.log("Image error details:", e.target);
+    e.target.onerror = null;
+    e.target.src = '/assets/demo-dog.jpg';
   };
 
   if (loading) {
@@ -109,10 +121,12 @@ const PetDescription = () => {
         >
           {pet.images && pet.images.length > 0 ? (
             <>
+              {console.log("Rendering image with path:", pet.images[activeImage]?.path)}
               <img 
-                src={`http://localhost:8080/Pet/${pet.images[activeImage]?.path || ''}`}
+                src={`http://localhost:8080/${pet.images[activeImage]?.path.replace('public/', '') || ''}`}
                 alt={pet.images[activeImage]?.path || 'Pet image'} 
                 className="main-image" 
+                onError={handleImageError}
               />
               <div className="image-navigation">
                 {pet.images.map((_, index) => (
@@ -143,8 +157,9 @@ const PetDescription = () => {
                 onClick={() => handleImageSelect(index)}
               >
                 <img 
-                  src={`http://localhost:8080/Pet/${image?.path || ''}`}
+                  src={`http://localhost:8080/${image?.path.replace('public/', '') || ''}`}
                   alt={`Thumbnail ${index + 1}`}
+                  onError={handleImageError}
                 />
               </motion.div>
             ))}

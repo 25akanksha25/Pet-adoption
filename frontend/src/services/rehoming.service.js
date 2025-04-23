@@ -3,13 +3,37 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 // Get auth token from localStorage
-const getAuthHeader = () => {
+const getToken = () => {
   const user = JSON.parse(localStorage.getItem('userInfo'));
-  if (!user?.token) {
+  return user?.token;
+};
+
+// Get auth header
+const getAuthHeader = () => {
+  const token = getToken();
+  if (!token) {
     console.error('No auth token found in localStorage');
     return {};
   }
-  return { Authorization: `Bearer ${user.token}` };
+  return { Authorization: `Bearer ${token}` };
+};
+
+// Handle axios errors
+const handleAxiosError = (error) => {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    console.error('Error response:', error.response.data);
+    throw new Error(error.response.data.message || 'An error occurred');
+  } else if (error.request) {
+    // The request was made but no response was received
+    console.error('Error request:', error.request);
+    throw new Error('No response received from server');
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    console.error('Error:', error.message);
+    throw error;
+  }
 };
 
 // Initialize rehoming process
@@ -28,8 +52,7 @@ export const initializeRehoming = async (termsAgreed) => {
     console.log('Rehoming initialization response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Rehoming initialization error:', error.response?.data || error.message);
-    throw error;
+    throw handleAxiosError(error);
   }
 };
 
@@ -53,33 +76,26 @@ export const updatePetInfo = async (petData) => {
     }
     return response.data;
   } catch (error) {
-    console.error('Pet info update error:', error.response?.data || error.message);
-    throw error;
+    throw handleAxiosError(error);
   }
 };
 
 // Upload pet images
 export const uploadPetImages = async (formData) => {
-  console.log('Uploading pet images:', formData);
-  console.log('Auth headers:', getAuthHeader());
-  
   try {
-    console.log('Uploading pet images:' );
     const response = await axios.post(
       `${API_URL}/rehoming/upload/images`,
       formData,
       {
         headers: {
-          ...getAuthHeader(),
-         
-        }
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${getToken()}`,
+        },
       }
     );
-    console.log('Pet images upload response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Pet images upload error:', error.response?.data || error.message);
-    throw error;
+    throw handleAxiosError(error);
   }
 };
 
@@ -96,7 +112,6 @@ export const finalizeRehoming = async (petData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Finalize rehoming error:', error.response?.data || error.message);
-    throw error;
+    throw handleAxiosError(error);
   }
 };

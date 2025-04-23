@@ -105,10 +105,52 @@ const ChooseToRehome = () => {
 
   const handleFileChange = (event, type) => {
     const files = Array.from(event.target.files);
-    setPetData((prev) => ({
-      ...prev,
-      [type]: [...prev[type] || [], ...files],
-    }));
+    
+    // Validate file types for images
+    if (type === "images") {
+      const validTypes = ['.jpg', '.jpeg', '.png', '.gif'];
+      const validFiles = files.filter(file => {
+        const extension = '.' + file.name.split('.').pop().toLowerCase();
+        return validTypes.includes(extension);
+      });
+      
+      if (validFiles.length !== files.length) {
+        toast.error("Only .jpg, .jpeg, .png, and .gif files are allowed!");
+        return;
+      }
+
+      // Create FormData and append each file
+      const formData = new FormData();
+      validFiles.forEach((file, index) => {
+        formData.append('images', file);
+      });
+
+      // Update state with both the files and the FormData
+      setPetData((prev) => ({
+        ...prev,
+        [type]: validFiles,
+        formData: formData
+      }));
+    } 
+    // Handle document uploads
+    else if (type === "documents") {
+      const validTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
+      const validFiles = files.filter(file => {
+        const extension = '.' + file.name.split('.').pop().toLowerCase();
+        return validTypes.includes(extension);
+      });
+      
+      if (validFiles.length !== files.length) {
+        toast.error("Only .pdf, .jpg, .jpeg, and .png files are allowed!");
+        return;
+      }
+
+      // Update state with the documents
+      setPetData((prev) => ({
+        ...prev,
+        [type]: [...(prev[type] || []), ...validFiles]
+      }));
+    }
   };
 
   const handleNext = async () => {
@@ -403,6 +445,7 @@ const ChooseToRehome = () => {
                   <input
                     type="file"
                     onChange={(e) => handleFileChange(e, "images")}
+                    accept=".jpg,.jpeg,.png,.gif"
                     required
                   />
                 </div>
@@ -700,32 +743,37 @@ const ChooseToRehome = () => {
             <p className="description">
               Upload any relevant documents for your pet (vaccination records, medical history, etc.).
               Accepted formats: <strong>.pdf, .jpg, .png</strong>. Max size: <strong>5MB per file</strong>.
+              <strong className="text-red-500"> At least one document is required to proceed.</strong>
             </p>
       
             <div className="document-grid">
-              {petData.documents.map((file, index) => (
-                <div className="document-box" key={index}>
-                  <span>{index + 1}. Document</span>
-                  <div className="upload-area">
-                    {file.type === "application/pdf" ? (
-                      <embed
-                        src={URL.createObjectURL(file)}
-                        type="application/pdf"
-                        width="100%"
-                        height="180px"
-                      />
-                    ) : (
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt={`Uploaded Document ${index + 1}`}
-                        className="uploaded-preview"
-                        width="100%"
-                        height="180px"
-                      />
-                    )}
+              {petData.documents && petData.documents.length > 0 ? (
+                petData.documents.map((file, index) => (
+                  <div className="document-box" key={index}>
+                    <span>{index + 1}. Document</span>
+                    <div className="upload-area">
+                      {file.type === "application/pdf" ? (
+                        <embed
+                          src={URL.createObjectURL(file)}
+                          type="application/pdf"
+                          width="100%"
+                          height="180px"
+                        />
+                      ) : (
+                        <img
+                          src={URL.createObjectURL(file)}
+                          alt={`Uploaded Document ${index + 1}`}
+                          className="uploaded-preview"
+                          width="100%"
+                          height="180px"
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-gray-500 italic">No documents uploaded yet. Please upload at least one document.</p>
+              )}
             </div>
       
             <div className="file-upload">
@@ -735,7 +783,7 @@ const ChooseToRehome = () => {
                 onChange={(e) => handleFileChange(e, "documents")}
                 required
               />
-              {/* <p>Click to upload or drag and drop</p> */}
+              <p className="text-sm text-gray-600 mt-2">Click to upload or drag and drop</p>
             </div>
           </div>
         );
