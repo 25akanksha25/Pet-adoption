@@ -46,9 +46,17 @@ const Users = () => {
   }, []);
 
   return (
-    <div className="p-10">
-      <h2 className="text-4xl font-semibold text-gray-800 mb-4">Users</h2>
-      <div className="space-y-4">
+    <div>
+    <div>
+        <img 
+          src="../../assets/users.png"
+          alt="Admin Dashboard" 
+          style={{ width: '100vw', height: '80vh', marginBottom: '20px' }} 
+        />
+        {/* <h1>This is the Admin Dashboard and is currently in progress.</h1> */}
+      </div>
+      <h2 className="text-4xl font-semibold text-gray-800 mb-4 p-10">Users</h2>
+      <div className="space-y-4 p-10">
         {users.map((user) => (
           <div key={user._id} className="p-4 bg-white text-lg rounded shadow flex justify-between">
             <p>

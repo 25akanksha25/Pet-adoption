@@ -30,7 +30,7 @@ const Footer = () => {
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
             {/* <img src="./assets/paws4home_logo.png" alt="Paws4Home Logo" className="footer-logo-image" /> */}
-            <span>Paws4Home</span>
+            <span>PawFinds</span>
           </Link>
           <p className="footer-description">
             Finding loving homes for pets in need. Join us in making a difference 
@@ -77,7 +77,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="footer-bottom">
-        <p>&copy; 2023 Paws4Home. All rights reserved.</p>
+        <p>&copy; 2025 PawFinds. All rights reserved.</p>
       </div>
     </motion.footer>
   );
