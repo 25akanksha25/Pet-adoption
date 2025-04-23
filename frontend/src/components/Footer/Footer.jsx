@@ -69,7 +69,7 @@ const Footer = () => {
             </li>
             <li>
               <FaEnvelope />
-              <span>info@paws4home.com</span>
+              <span>info@pawFinds.com</span>
             </li>
           </ul>
         </div>

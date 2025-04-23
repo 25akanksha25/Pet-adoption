@@ -19,7 +19,7 @@ const Navbar = ({ handleLoginPopup, user, setUser }) => {
         {/* Logo */}
         <Link to="/">
           <div className="logo">
-            <img src="./assets/paws4home_logo.png" alt="Logo" className="logo-image" />
+            <img src="./assets/petlogo.png" alt="Logo" className="logo-image" />
             <span>PawsFinds</span>
           </div>
         </Link>
